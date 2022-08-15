@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:twitter/screens/forgot_password_screen.dart';
 import 'package:twitter/screens/home_screen.dart';
 import 'package:twitter/screens/signup_screen.dart';
+import 'package:twitter/widgets/bar_menu.dart';
 import 'package:twitter/widgets/entry_field.dart';
 import 'package:twitter/widgets/flat_button.dart';
 
@@ -75,7 +76,7 @@ class _SignIn extends State<SignIn> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (_) => const HomeScreen()),
+                      MaterialPageRoute(builder: (_) => const BarMenu()),
                     );
                   }),
               GestureDetector(
