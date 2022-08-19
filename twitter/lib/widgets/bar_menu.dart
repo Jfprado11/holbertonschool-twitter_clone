@@ -22,9 +22,6 @@ class _BarMenu extends State<BarMenu> {
     NotificationsScreen(),
     ChatsScreen(),
   ];
-  // void _onItemTapped(int index) {
-
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +29,10 @@ class _BarMenu extends State<BarMenu> {
     return Consumer<SharedState>(
       builder: (context, state, child) {
         return Scaffold(
-          body: _screenOptions.elementAt(state.pageNum),
+          body: IndexedStack(
+            index: state.pageNum,
+            children: _screenOptions,
+          ),
           bottomNavigationBar: BottomNavigationBar(
             showSelectedLabels: false,
             showUnselectedLabels: false,
@@ -42,7 +42,7 @@ class _BarMenu extends State<BarMenu> {
               BottomNavigationBarItem(icon: Icon(Icons.search), label: ''),
               BottomNavigationBarItem(
                   icon: Icon(Icons.notifications), label: ''),
-              BottomNavigationBarItem(icon: Icon(Icons.school), label: ''),
+              BottomNavigationBarItem(icon: Icon(Icons.email), label: ''),
             ],
             currentIndex: state.pageNum,
             onTap: (int idenx) {
