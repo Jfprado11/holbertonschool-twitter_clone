@@ -25,7 +25,6 @@ class _BarMenu extends State<BarMenu> {
 
   @override
   Widget build(BuildContext context) {
-    // final int index = Provider.of<SharedState>(context, listen: false).pageNum;
     return Consumer<SharedState>(
       builder: (context, state, child) {
         return Scaffold(
