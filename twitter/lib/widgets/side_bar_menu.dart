@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:twitter/models/user.dart';
 import 'package:twitter/providers/auth_state.dart';
+import 'package:twitter/screens/profile_screen.dart';
 
 import '../screens/signin_screen.dart';
 
@@ -40,6 +41,7 @@ class _SideBarMenu extends State<SideBarMenu> {
                       accountName: Container(
                         margin: const EdgeInsets.only(top: 16.0),
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               snapshot.data!.displayName,
@@ -67,14 +69,14 @@ class _SideBarMenu extends State<SideBarMenu> {
                           Container(
                             margin: const EdgeInsets.only(right: 10.0),
                             child: Text(
-                              '${snapshot.data!.followers} Followers',
+                              '${snapshot.data?.followers} Followers',
                               style: const TextStyle(color: Colors.black),
                             ),
                           ),
                           Container(
                             margin: const EdgeInsets.only(right: 10.0),
                             child: Text(
-                              '${snapshot.data!.following} Following',
+                              '${snapshot.data?.following} Following',
                               style: const TextStyle(color: Colors.black),
                             ),
                           ),
@@ -94,7 +96,15 @@ class _SideBarMenu extends State<SideBarMenu> {
                             fontSize: 18.0,
                             fontWeight: FontWeight.bold),
                       ),
-                      onTap: () => {},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                ProfileScreen(userID: snapshot.data!.userID),
+                          ),
+                        );
+                      },
                     ),
                     ListTile(
                       leading: const Icon(Icons.list),
