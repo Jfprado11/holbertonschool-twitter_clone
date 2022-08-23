@@ -50,7 +50,19 @@ class _EditProfileScreen extends State<EditProfileScreen> {
             ),
             actions: [
               TextButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    final query = state.usersRef.where(
+                      'key',
+                      isEqualTo: state.auth.currentUser!.uid,
+                    );
+                    final user = await query.get();
+                    await user.docs[0].reference.update(<String, dynamic>{
+                      'displayName': _nameController.value.text,
+                      'bio': _bioController.value.text
+                    });
+                    if (!mounted) return;
+                    Navigator.of(context).pop();
+                  },
                   child: const Text(
                     'Save',
                     style: TextStyle(
